@@ -1,0 +1,24 @@
+<?php
+namespace App\Validator;
+
+use App\Validator\BaseValidator;
+use Validator;
+
+/**
+ * 
+ */
+class AuthValidator extends BaseValidator
+{
+	public $validator;
+
+	public function registerValidate($inputs)
+	{
+		$this->validator = Validator::make($inputs, [
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+        return !$this->validator->fails();
+	}
+
+}
