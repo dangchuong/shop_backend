@@ -21,4 +21,13 @@ class AuthValidator extends BaseValidator
         return !$this->validator->fails();
 	}
 
+	public function loginValidate($inputs)
+	{
+		$this->validator = Validator::make($inputs, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        return !$this->validator->fails();
+	}
+
 }
